@@ -1,0 +1,138 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import menuDe, { frontmatter as menuDeFrontmatter } from "../content/menu.de.md";
+
+const { sections = [] } = menuDeFrontmatter;
+---
+<BaseLayout
+  title="Oriol Restaurant – DE"
+  lang="de"
+  otherLangHref="/en"
+>
+  <section class="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-10 md:items-end">
+    <div class="aspect-[4/5] md:aspect-[3/4] w-full overflow-hidden bg-neutral-200">
+      <img
+        src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        alt="Warmer Restaurantinnenraum mit Gästen beim Essen"
+        class="h-full w-full object-cover grayscale-[20%]"
+        loading="lazy"
+      />
+    </div>
+    <div class="space-y-3 md:space-y-4">
+      <p class="inline-flex items-center gap-2 rounded-full border border-[#C15A3A]/40 bg-[#C15A3A]/5 px-3 py-1 text-[0.7rem] sm:text-xs tracking-[0.18em] uppercase text-[#C15A3A]">
+        Restaurant · Berlin
+      </p>
+      <h1 class="text-4xl sm:text-5xl tracking-tight">
+        Oriol
+      </h1>
+      <p class="text-sm sm:text-base text-neutral-700 max-w-prose">
+        Saisonale mediterrane Küche mit Berliner Note. Platzhaltertext für den Prototyp.
+      </p>
+    </div>
+  </section>
+
+  <section id="about" class="space-y-3">
+    <h2 class="text-2xl sm:text-3xl">Über</h2>
+    <p class="text-neutral-600">
+      Oriol ist ein kleines Nachbarschaftsrestaurant mit Fokus auf saisonale Produkte,
+      Naturwein und einen entspannten Gastraum. Dieser Text ist ein Platzhalter.
+    </p>
+  </section>
+
+  <section id="gallery" class="space-y-4">
+    <h2 class="text-2xl sm:text-3xl">Galerie</h2>
+    <p class="text-neutral-600">
+      Einige Eindrücke vom Raum, dem Essen und der Atmosphäre.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="group relative overflow-hidden rounded-lg bg-neutral-200">
+        <img
+          src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800"
+          alt="Gäste in einem warmen Restaurantinnenraum"
+          class="h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-[#C15A3A]/0 group-hover:bg-[#C15A3A]/10 transition-colors duration-300" />
+      </div>
+      <div class="group relative overflow-hidden rounded-lg bg-neutral-200">
+        <img
+          src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=800"
+          alt="Köche richten Teller in einer offenen Küche an"
+          class="h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-[#C15A3A]/0 group-hover:bg-[#C15A3A]/10 transition-colors duration-300" />
+      </div>
+      <div class="group relative overflow-hidden rounded-lg bg-neutral-200">
+        <img
+          src="https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=800"
+          alt="Wein und Gläser auf einem Tresen"
+          class="h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-[#C15A3A]/0 group-hover:bg-[#C15A3A]/10 transition-colors duration-300" />
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="mt-12 space-y-6">
+    <div class="space-y-2">
+      <div class="h-[2px] w-8 bg-[#C15A3A]" />
+      <h2 class="text-2xl sm:text-3xl">Menü</h2>
+    </div>
+
+    {sections.map((section) => (
+      <div class="space-y-2">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+          <h3 class="text-lg font-medium">{section.title}</h3>
+          {section.note && (
+            <p class="text-sm text-neutral-500">{section.note}</p>
+          )}
+        </div>
+        <ul class="divide-y divide-neutral-200">
+          {section.items.map((item) => (
+            <li class="py-3 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+              <div>
+                <p class="font-medium">{item.name}</p>
+                {item.description && (
+                  <p class="text-sm text-neutral-600">{item.description}</p>
+                )}
+              </div>
+              {item.price !== undefined && (
+                <p class="text-sm text-neutral-700 tabular-nums">
+                  {item.price}€
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+
+  <section id="reservation" class="mt-12 space-y-3">
+    <div class="space-y-2">
+      <div class="h-[2px] w-8 bg-[#C15A3A]" />
+      <h2 class="text-2xl sm:text-3xl">Reservierungen</h2>
+    </div>
+    <p class="text-neutral-600">
+      Für den Prototyp nutzen wir einen einfachen E-Mail-Link. Später kann hier ein Buchungs-Widget eingebunden werden.
+    </p>
+    <a
+      href="mailto:placeholder@example.com?subject=Reservierungsanfrage"
+      class="inline-flex items-center justify-center px-4 py-2 border border-neutral-900 text-sm tracking-wide uppercase hover:bg-[#C15A3A] hover:border-[#C15A3A] hover:text-neutral-50 transition-colors"
+    >
+      Tisch per E-Mail anfragen
+    </a>
+  </section>
+
+  <section id="contact" class="mt-12 space-y-2">
+    <h2 class="text-2xl sm:text-3xl">Kontakt</h2>
+    <p class="text-neutral-600">
+      Platzhalter-Adresse · 10119 Berlin
+    </p>
+    <p class="text-neutral-600">
+      E-Mail: placeholder@example.com · +49 000 000000
+    </p>
+  </section>
+</BaseLayout>
